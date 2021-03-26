@@ -6,7 +6,7 @@ Podendo cadastrar, editar, excluir, anexar arquivos pdf, png, jpeg, fazer filtro
 O sistema conta com envio de e-mail de aviso referente a contas vencidas ou a vencer.
 
 
-Requisitos
-JDK 1.8.X - Apenas um JRE pode não ser suficiente, um JDK completo é recomendado
-Spring Boot 2.3.3
-MySql 8
+Requisitos:
+JDK 1.8.X - Apenas um JRE pode não ser suficiente, um JDK completo é recomendado.
+Spring Boot 2.3.3.
+MySql 8.
