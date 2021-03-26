@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.2.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.rodrigo.moneyadmin-api</groupId>
+	<artifactId>moneyadmin-api</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>moneyadmin-api</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<aws-java-sdk.version>1.11.670</aws-java-sdk.version>    
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- JavaMail Sender -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+	    	         <artifactId>spring-boot-starter-mail</artifactId>
+	    <!--   versão usada   <version>2.2.2.RELEASE</version> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+       </dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>5.2.4</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.3.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-jwt</artifactId>
+			<version>1.0.10.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- JasperReports -->
+       <dependency>
+   	        <groupId>net.sf.jasperreports</groupId>
+   	        <artifactId>jasperreports</artifactId>
+   	       <version>6.10.0</version>
+	   </dependency>
+       <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-functions</artifactId>
+            <version>6.10.0</version>
+       </dependency>
+       <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>6.10.0</version>
+       </dependency>	
+        
+        <!-- Colocamos a dependencia abaixo no artifactId com o nome spring-boot-starter-actuator
+        porque a IDE STS sempre quando iniciamos nossa aplicação ela da um aviso -> Failed to refresh live
+        data from process - unknown after retries entao para resolver isso colocamos essa dependencia
+        
+        Por que isso acontece
+        O recurso que causa esse comportamento são as informações do aplicativo ao vivo do STS (mais 
+        informações aqui ) e seu objetivo é fornecer informações ao vivo do seu aplicativo de inicialização
+        Spring (os atuadores do Spring Boot fornecem esse tipo de informação) e consolidar essas 
+        informações com o código do seu espaço de trabalho. O STS tenta conectar-se automaticamente ao 
+        processo de execução do Spring Boot (cujo ID você vê na mensagem) para recuperar essas informações 
+        ao vivo, mas por algum motivo, ele não consegue fazer isso, portanto, essa mensagem de erro
+        é exibida. O número padrão de tentativas é 10, mas isso é configurável. 
+
+        Existem algumas razões diferentes para esse comportamento - por exemplo, o STS não consegue
+        acessar o processo ou o aplicativo Spring Boot não possui atuadores no caminho de classe. O segundo
+        é o mais comum.
+        Fonte: https://javahowtos.com/guides/118-tools/349-solved-spring-boot-issue-failed-to-refresh-live-data-from-process-unknown-after-retries.html
+        -->
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+         </dependency>
+        
+          <!-- Amazon S3 -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>${aws-java-sdk.version}</version>
+        </dependency>
+        
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<repositories>
+        <repository>
+            <id>jr-ce-releases</id>
+            <url>http://jaspersoft.artifactoryonline.com/jaspersoft/jr-ce-releases</url>
+        </repository>
+    </repositories>
+</project>
