@@ -37,20 +37,20 @@ public class Pessoa {
 	@NotNull
 	private Boolean ativo;
 
-	@JsonIgnoreProperties("pessoa") // Colocamos essa anotação por que quando ele for gerar o Json da entidade
-	// pessoa ele vai ler todos os atributos e quando chegar no atributo contato entao ele entra na entidade
-	// contato chegando la ele ler todos os atributos e dentro da entidade contato existe uma propiedade
-	// pessoa entao ele entra na entidade pessoa e faz a leitura novamente entao fica em um loop
-	// e no final das contas não consegue fazer a leitura para gerar o json e então a pilha explode
-	// dando o erro stackoverflowerror - pilha estourada.
-	// para resolver isso colocamos a anotação @JsonIgnoreProperties("pessoa") 
-	// A classe pessoa precisa que leia a entidade contato mas quando chega na entidade pessoa e encontra
-	// a variavel pessoa da entidade Pessoa na classe Contato nao precisa que leia essa propiedade
-	// para isso fazemos dessa forma.
-	// E porque não colocamos JsonIgnore na popiedade pessoa dentro da classe Contato
-	// Porque se agente precisar criar uma classe de recurso de Contato daria um erro na propiedade pessoa
-	// Ja que a entidade Contato estar mapeada e inclui a propiedade pessoa.
-	// Fonte: https://www.algaworks.com/aulas/1726/resolvendo-o-stackoverflowerror-com-jsonignoreproperties/
+	@JsonIgnoreProperties("pessoa")//Colocamos essa anotação por que quando formos 
+// fazer um get em /pessoas o JPA vai ler todos os atributos e quando chegar no atributo contato entao ele entra na entidade
+// contato chegando la ele ler todos os atributos e dentro da entidade contato existe uma propiedade
+// pessoa entao ele entra na entidade pessoa e faz a leitura novamente entao fica em um loop
+// e no final das contas não consegue fazer a leitura para gerar o json e então a pilha explode
+// dando o erro stackoverflowerror - pilha estourada.
+// para resolver isso colocamos a anotação @JsonIgnoreProperties("pessoa") 
+// A classe pessoa precisa que leia a entidade contato mas quando chega na entidade pessoa e encontra
+// a variavel pessoa da entidade Pessoa na classe Contato nao precisa que leia essa propiedade
+// para isso fazemos dessa forma.
+// E porque não colocamos JsonIgnore na popiedade pessoa dentro da classe Contato
+// Porque se agente precisar criar endpoints para o recurso Contato daria um erro na propiedade pessoa
+// Ja que a entidade Contato estar mapeada e inclui a propiedade pessoa.
+// Fonte: https://www.algaworks.com/aulas/1726/resolvendo-o-stackoverflowerror-com-jsonignoreproperties/
 	@Valid
 	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL,
 	orphanRemoval = true)
