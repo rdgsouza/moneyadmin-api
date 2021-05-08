@@ -78,8 +78,8 @@ public class S3 {
 		return "\\\\" + property.getS3().getBucket() +
 				".s3.amazonaws.com/" + objeto;
 	}
-	// Acima coloxamos \\\\ para que não vai import se o protocolo e http ou htttps
-	// estao para qualquer um dos protocolos a url vai se ajustar a esses protocolos
+	// Acima colocamos \\\\ para que não importe se o protocolo é http ou htttps
+	// para qualquer um dos protocolos a url vai se ajustar
 		
 	public void salvar(String objeto) {
 		SetObjectTaggingRequest setObjectTaggingRequest = new SetObjectTaggingRequest(
