@@ -25,7 +25,7 @@ public class Mailer {
 
 	 @Autowired
 	 private JavaMailSender mailSender;
-	 
+	  
 	 @Autowired
 	 private TemplateEngine thymeleaf;
 	  
