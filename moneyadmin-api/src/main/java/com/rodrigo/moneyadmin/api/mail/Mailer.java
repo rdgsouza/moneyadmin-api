@@ -25,9 +25,9 @@ public class Mailer {
 
 	 @Autowired
 	 private JavaMailSender mailSender;
-	  
+	 
 	 @Autowired
-	 private TemplateEngine thymeleaf;
+	 private TemplateEngine thymelaaf;
 	  
 //	 @Autowired
 //	 private LancamentoRepository repo;
@@ -93,7 +93,7 @@ public class Mailer {
 		 variaveis.entrySet().forEach(
 				 e -> context.setVariable(e.getKey(), e.getValue()));
 		 
-		 String menssagem = thymeleaf.process(template, context);
+		 String menssagem = thymelaaf.process(template, context);
 		 
 		 this.enviarEmail(remetente, destinatarios, assunto, menssagem);
 		 
