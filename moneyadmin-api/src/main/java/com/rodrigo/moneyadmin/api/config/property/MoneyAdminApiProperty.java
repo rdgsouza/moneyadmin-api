@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 // a origem permitida quando for levantar a aplicacao em producao
 public class MoneyAdminApiProperty {
 
-	private String originPermitida = "http://localhost:8000";
+	private String originPermitida = "http://localhost:4200";
 	
 	private final Seguranca seguranca = new Seguranca();
 	

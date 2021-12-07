@@ -26,7 +26,6 @@ import com.rodrigo.moneyadmin.api.repository.LancamentoRepository;
 import com.rodrigo.moneyadmin.api.repository.PessoaRepository;
 import com.rodrigo.moneyadmin.api.repository.UsuarioRepository;
 import com.rodrigo.moneyadmin.api.service.exception.PessoaInexistenteOuInativaException;
-import com.rodrigo.moneyadmin.api.storage.S3;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -59,8 +58,8 @@ public class LancamentoService {
 	@Autowired
 	private Mailer mailer;
 	
-	@Autowired
-	private S3 s3;
+//	@Autowired
+//	private S3 s3;
 	
 	// @Scheduled(fixedDelay = 1000 * 60 * 30)	
     // @Scheduled(cron = "0 22 55 * * *")
@@ -181,9 +180,9 @@ public class LancamentoService {
 			
 	// Depois que é anexado o arquivo ele vai estar temporariamente salvo na s3 o metodo abaixo
 	// vai de fato salvar o arquivo na s3. Vai tirar ele de um arquivo temporario e salvar na s3
-		if(StringUtils.hasText(lancamento.getAnexo())) {
-			s3.salvar(lancamento.getAnexo());
-		}
+//		if(StringUtils.hasText(lancamento.getAnexo())) {
+//			s3.salvar(lancamento.getAnexo());
+//		}
 		
 		 validarPessoa(lancamento);	
 		
@@ -211,10 +210,10 @@ public class LancamentoService {
 //		  existe um anexo.
 //		  Entao veio um anexo vazio no parametro e em lancamentoSalvo.getAnexo() tem um anexo então 
 //		  a logica que é para ser aplicada é a de remoção.
-		 s3.remove(lancamentoSalvo.getAnexo()); // então remove vamos informar para o s3 a remoção do anexo
-		} else if(StringUtils.hasText(lancamento.getAnexo())
-		&& !lancamento.getAnexo().equals(lancamentoSalvo.getAnexo())) {
-          s3.substituir(lancamentoSalvo.getAnexo(), lancamento.getAnexo());
+//		 s3.remove(lancamentoSalvo.getAnexo()); // então remove vamos informar para o s3 a remoção do anexo
+//		} else if(StringUtils.hasText(lancamento.getAnexo())
+//		&& !lancamento.getAnexo().equals(lancamentoSalvo.getAnexo())) {
+//          s3.substituir(lancamentoSalvo.getAnexo(), lancamento.getAnexo());
 		}		
 		
 		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "codigo");

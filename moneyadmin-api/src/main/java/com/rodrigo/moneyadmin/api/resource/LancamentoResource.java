@@ -1,5 +1,6 @@
 package com.rodrigo.moneyadmin.api.resource;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -34,7 +35,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rodrigo.moneyadmin.api.dto.Anexo;
 import com.rodrigo.moneyadmin.api.dto.LancamentoEstatisticaCategoria;
 import com.rodrigo.moneyadmin.api.dto.LancamentoEstatisticaDia;
 import com.rodrigo.moneyadmin.api.event.RecursoCriadoEvent;
@@ -45,7 +45,6 @@ import com.rodrigo.moneyadmin.api.repository.filter.LancamentoFilter;
 import com.rodrigo.moneyadmin.api.repository.projection.ResumoLancamento;
 import com.rodrigo.moneyadmin.api.service.LancamentoService;
 import com.rodrigo.moneyadmin.api.service.exception.PessoaInexistenteOuInativaException;
-import com.rodrigo.moneyadmin.api.storage.S3;
 
 @RestController
 @RequestMapping("/lancamentos")
@@ -63,8 +62,8 @@ public class LancamentoResource {
 	@Autowired
 	private MessageSource messageSource;
 	
-	@Autowired
-	private S3 s3;
+//	@Autowired
+//	private S3 s3;
 
 //	private byte[] byteReferenciaNulo;
 	
@@ -72,17 +71,19 @@ public class LancamentoResource {
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('write')")
 	//Vamos Colocar o tipo de retorno Anexo para retorna o nome do arquivo e a url necessaria para 
 	//acessar esse arquivo
-	public Anexo uploadAnexo(@RequestParam MultipartFile anexo) throws IOException {
+	public String uploadAnexo(@RequestParam MultipartFile anexo) throws IOException {
 
 //      Para salvar o arquivo no computado local 
-//		OutputStream out = new FileOutputStream(
-//				"/home/rodrigo/Documentos/anexo--" + anexo.getOriginalFilename());
-//		out.write(anexo.getBytes());
-//		out.close();
+		FileOutputStream out = new FileOutputStream(
+				"/home/rodrigo/Documentos/anexo--" + anexo.getOriginalFilename());
+		out.write(anexo.getBytes());
+		out.close();
+		
+		return "ok";
 		
 //      Para salvar o arquivo na conta que criamos na AmazonS3
-		String nome = s3.salvarTemporariamente(anexo);	
-		return new Anexo(nome, s3.configurarUrl(nome));	
+//		String nome = s3.salvarTemporariamente(anexo);	
+//		return new Anexo(nome, s3.configurarUrl(nome));	
 	}
 		
 	@GetMapping("/relatorios/por-pessoa-receita-despesa-quitadas")

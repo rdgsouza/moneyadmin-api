@@ -8,7 +8,7 @@ public class GeradorSenha {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-		System.out.println(encoder.encode("r2021")); // Usuario Rodrigo Souza. email: rdsouza.c@gmail.com
-//	    System.out.println(encoder.encode("r123")); //Usuario Rodrigues Souza. email: rdsouza.cs10@gmail.com 
+//		System.out.println(encoder.encode("r1234")); // Usuario Rodrigo Souza. email: rdsouza.c@gmail.com
+	    System.out.println(encoder.encode("r4321")); //Usuario Rodrigues Souza. email: rdsouza.cs2@gmail.com 
 	}
 }
